@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WinLoginApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Indsiden.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class Indsiden : Page
     {
-        public MainWindow()
+        public Indsiden()
         {
             InitializeComponent();
         }
