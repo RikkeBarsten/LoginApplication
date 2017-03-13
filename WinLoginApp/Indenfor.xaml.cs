@@ -16,15 +16,18 @@ using System.Windows.Shapes;
 namespace WinLoginApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Indenfor.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class Indenfor : Page
     {
-        public MainWindow()
+        public Indenfor()
         {
             InitializeComponent();
         }
 
-        
+        private void buttonTestConnString_Click(object sender, RoutedEventArgs e)
+        {
+            labelWelcome.Content = Utility.GetConnectionString();
+        }
     }
 }

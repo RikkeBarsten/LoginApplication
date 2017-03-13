@@ -24,5 +24,18 @@ namespace WinLoginApp
         {
             InitializeComponent();
         }
+
+        
+
+        private void OpretKonto_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            OpretBruger opretVindu = new OpretBruger();
+            opretVindu.Show();
+        }
+
+        private void buttonLogin_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Indenfor.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
