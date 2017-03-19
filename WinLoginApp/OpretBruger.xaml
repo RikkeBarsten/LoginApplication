@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinLoginApp"
         mc:Ignorable="d"
-        Title="OpretBruger" Height="300" Width="300">
+        Title="OpretBruger" Height="350" Width="300">
     <Grid>
         <Label x:Name="labelTitel" Content="Opret bruger" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelId" Content="Indtast brugernavn (email)" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top"/>

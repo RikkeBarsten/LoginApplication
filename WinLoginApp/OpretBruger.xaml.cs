@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Mail;
+using System.Data;
 
 namespace WinLoginApp
 {
@@ -20,10 +21,21 @@ namespace WinLoginApp
     /// </summary>
     public partial class OpretBruger : Window
     {
+        private LoginAppDBDataSet LoginDataSet;
+        private LoginAppDBDataSetTableAdapters.LoginInfoTableAdapter LoginTableAdapter;
+        
+
         public OpretBruger()
         {
             InitializeComponent();
+
+            LoginDataSet = new LoginAppDBDataSet();
+            LoginTableAdapter = new LoginAppDBDataSetTableAdapters.LoginInfoTableAdapter();
+            LoginTableAdapter.Fill(LoginDataSet.LoginInfo);
         }
+
+        
+
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -31,18 +43,31 @@ namespace WinLoginApp
             String PW = textBoxPW.Text; 
             String PW2 = textBoxPWRepeat.Text;
 
-            if (everythingOK(userId, PW, PW2)
+            if (everythingOK(userId, PW, PW2))
             {
-                
-                MessageBox.Show("Everything ok. You are being registered in the system.")
-                    // Hash password
-                    // Store ind DB
+
+                MessageBox.Show("Everything ok. You are being registered in the system.");
+                // Hash password
+                // Store ind DB
+                LoginAppDBDataSet.LoginInfoRow newRow = LoginDataSet.LoginInfo.NewLoginInfoRow();
+
+                newRow.Id = userId;
+                newRow.Kodeord = PW;
+
+                LoginDataSet.LoginInfo.Rows.Add(newRow);
+
+                LoginTableAdapter.Update(LoginDataSet.LoginInfo);
+
+                // Close newUserWindow
+                this.Close();
             }
             else
             {
+
                 // Tell user to improve
                 // Should give detailed message (is it email, pw or pw2) 
                 // So maybe refactor everythingok-method......
+                MessageBox.Show("Something went wrong. Please try again.");
             }
 
         }

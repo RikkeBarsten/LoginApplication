@@ -20,14 +20,14 @@ namespace WinLoginApp
     /// </summary>
     public partial class Indsiden : Page
     {
+
+
         public Indsiden()
         {
             InitializeComponent();
         }
-
         
-
-        private void OpretKonto_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void NyKonto_Click(object sender, RoutedEventArgs e)
         {
             OpretBruger opretVindu = new OpretBruger();
             opretVindu.Show();
@@ -35,7 +35,11 @@ namespace WinLoginApp
 
         private void buttonLogin_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("Indenfor.xaml", UriKind.RelativeOrAbsolute));
+            //this.NavigationService.Navigate(new Uri("Indenfor.xaml", UriKind.RelativeOrAbsolute));
+
+            //Check if userId exists in database, if not, ask user to create account
+
+            //If userId exist, get UserId and password, If password matches, go inside
         }
     }
 }
