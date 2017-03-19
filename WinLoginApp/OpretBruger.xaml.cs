@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Mail;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace WinLoginApp
 {
@@ -40,19 +41,23 @@ namespace WinLoginApp
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
             String userId = textBoxId.Text;
-            String PW = textBoxPW.Text; 
-            String PW2 = textBoxPWRepeat.Text;
+            String PW = passwordBox1.Password; 
+            String PW2 = passwordBox2.Password;
 
             if (everythingOK(userId, PW, PW2))
             {
 
                 MessageBox.Show("Everything ok. You are being registered in the system.");
                 // Hash password
+                var sha1 = new SHA1CryptoServiceProvider();
+                var data = Encoding.ASCII.GetBytes(PW);
+                var shaPW = sha1.ComputeHash(data);
                 // Store ind DB
                 LoginAppDBDataSet.LoginInfoRow newRow = LoginDataSet.LoginInfo.NewLoginInfoRow();
 
                 newRow.Id = userId;
-                newRow.Kodeord = PW;
+                newRow.Kodeord = Convert.ToBase64String(shaPW);
+                MessageBox.Show(Convert.ToBase64String(shaPW));
 
                 LoginDataSet.LoginInfo.Rows.Add(newRow);
 
@@ -60,6 +65,7 @@ namespace WinLoginApp
 
                 // Close newUserWindow
                 this.Close();
+                
             }
             else
             {
@@ -150,6 +156,8 @@ namespace WinLoginApp
                 return false;
             }
         }
+
+        
 
     }
 }
