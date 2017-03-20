@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,11 +24,26 @@ namespace WinLoginApp
         public Indenfor()
         {
             InitializeComponent();
+
+            
         }
 
-        private void buttonTestConnString_Click(object sender, RoutedEventArgs e)
+        private void buttonTestSHA1_Click(object sender, RoutedEventArgs e)
         {
-            labelWelcome.Content = Utility.GetConnectionString();
+            string pw = textBoxPW.Text;
+            // Hash password
+            var sha1 = new SHA1CryptoServiceProvider();
+            var data = Encoding.ASCII.GetBytes(pw);
+            var shaPW = sha1.ComputeHash(data);
+            var shaPWString = Convert.ToBase64String(shaPW);
+
+            labelSHA.Content = shaPWString;
+            labelSHA.Visibility = Visibility.Visible;
+        }
+
+        private void buttonLogout_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Indsiden.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

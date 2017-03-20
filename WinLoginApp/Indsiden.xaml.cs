@@ -31,6 +31,9 @@ namespace WinLoginApp
             LoginDataSet = new LoginAppDBDataSet();
             LoginTableAdapter = new LoginAppDBDataSetTableAdapters.LoginInfoTableAdapter();
             LoginTableAdapter.Fill(LoginDataSet.LoginInfo);
+
+            this.ShowsNavigationUI = false;
+            
         }
         
         private void NyKonto_Click(object sender, RoutedEventArgs e)
@@ -41,7 +44,7 @@ namespace WinLoginApp
                 LoginDataSet = new LoginAppDBDataSet();
                 LoginTableAdapter = new LoginAppDBDataSetTableAdapters.LoginInfoTableAdapter();
                 LoginTableAdapter.Fill(LoginDataSet.LoginInfo);
-                MessageBox.Show("MainWindos Dataset updated");
+                
             };
             opretVindu.Show();
             
@@ -53,7 +56,7 @@ namespace WinLoginApp
 
             //Check if userId exists in database, if not, ask user to create account
             String userId = textBoxUsername.Text;
-            MessageBox.Show(userId);
+            
             String PW = passwordBox.Password;
 
             // Hash password
@@ -61,16 +64,22 @@ namespace WinLoginApp
             var data = Encoding.ASCII.GetBytes(PW);
             var shaPW = sha1.ComputeHash(data);
             var shaPWString = Convert.ToBase64String(shaPW);
-            MessageBox.Show(shaPWString);
+            
 
 
 
             bool IdExists = LoginDataSet.LoginInfo.Rows.Contains(userId);
-            MessageBox.Show(IdExists.ToString());
+            
 
             LoginAppDBDataSet.LoginInfoRow DBID_row = (LoginAppDBDataSet.LoginInfoRow)LoginDataSet.LoginInfo.Rows.Find(userId);
-            var DBID = DBID_row.Id;
-            MessageBox.Show(DBID);
+
+
+            if (DBID_row != null)
+            {
+                var DBID = DBID_row.Id;
+            }
+            
+           
            
 
 

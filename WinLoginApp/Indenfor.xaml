@@ -5,12 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WinLoginApp"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="400" d:DesignWidth="300"
       Title="Indenfor">
 
     <Canvas>
-        <Label x:Name="labelWelcome" Content="Velkommen, du er nu på indsiden!" Canvas.Left="47" Canvas.Top="89"/>
-        <Button x:Name="buttonTestConnString" Content="Test Connection String" Canvas.Left="65" Canvas.Top="172" Width="140" Click="buttonTestConnString_Click"/>
+
+        <Button x:Name="buttonTestSHA1" Content="Test SHA1 hash" Canvas.Left="47" Canvas.Top="160" Width="180" Click="buttonTestSHA1_Click" />
+        <TextBlock x:Name="textBlock" Canvas.Left="56" TextWrapping="Wrap" Text="Velkommen, du er nu på indsiden! Du kan teste SHA1-hashing ved at indtaste et ord og trykke på knappen" Canvas.Top="44" Width="171"/>
+        <TextBox x:Name="textBoxPW" Height="23" Canvas.Left="47" TextWrapping="Wrap" Text="" Canvas.Top="122" Width="180"/>
+        <Label x:Name="labelSHA" Content="Label" Canvas.Left="31" Canvas.Top="200" Width="232" Visibility="Hidden"/>
+        <Button x:Name="buttonLogout" Content="Log ud" Canvas.Left="196" Canvas.Top="255" Width="75" Click="buttonLogout_Click"/>
 
     </Canvas>
 </Page>

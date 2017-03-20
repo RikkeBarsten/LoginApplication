@@ -57,7 +57,7 @@ namespace WinLoginApp
 
                 newRow.Id = userId;
                 newRow.Kodeord = Convert.ToBase64String(shaPW);
-                MessageBox.Show(Convert.ToBase64String(shaPW));
+             
 
                 LoginDataSet.LoginInfo.Rows.Add(newRow);
 
@@ -135,7 +135,7 @@ namespace WinLoginApp
             bool lengthOK = false;
             bool contentOK = false;
 
-            if (password.Length > 8)
+            if (password.Length >= 8)
             {
                 lengthOK = true;
             }
